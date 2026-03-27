@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Skies IT - Enterprise IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #003d82;
+            --secondary-blue: #0066cc;
+            --accent-cyan: #00a8d8;
+            --light-bg: #f8fbff;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+            --border-color: #e0e0e0;
+            --font-main: 'Inter', sans-serif;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo img {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .nav-cta {
+            margin-left: 30px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-blue);
+            border: 2px solid var(--secondary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .btn-lg {
+            padding: 18px 42px;
+            font-size: 1rem;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--secondary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 168, 216, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-light {
+            background: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            padding: 40px;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all var(--transition);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Why Choose Grid */
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .why-choose-item {
+            padding: 40px;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all var(--transition);
+        }
+
+        .why-choose-item:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .why-choose-item h3 {
+            font-size: 1.25rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .why-choose-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Industries Grid */
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .industry-item {
+            padding: 20px;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            transition: all var(--transition);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .industry-item:hover {
+            background: var(--white);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--light-bg);
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-size: 2.25rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-content p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .contact-info-item h4 {
+            color: var(--secondary-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .contact-info-item a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .services-grid,
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-choose-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-lg {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Blue Skies IT">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-choose">Why Choose Us</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="nav-cta"><a href="#schedule" class="btn btn-primary btn-sm">Schedule a Call</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Enterprise IT Solutions That Drive Business Growth</h1>
+                <p>We are a group of elite IT professionals with over 20 years of combined experience. We specialize in providing experienced, accomplished, and dependable IT contractors and consultants across diverse industries.</p>
+                <div class="hero-buttons">
+                    <a href="#schedule" class="btn btn-primary btn-lg">Schedule a Free Consultation</a>
+                    <a href="#services" class="btn btn-secondary btn-lg">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section section-light" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive IT solutions tailored to your organization's needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🖥️</div>
+                    <h3>IT Contracting</h3>
+                    <p>Access experienced IT professionals to augment your team or handle specific projects with enterprise expertise.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Project Management</h3>
+                    <p>Expert oversight of your IT initiatives with proven project management methodologies and delivery excellence.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Programming & Development</h3>
+                    <p>Custom software development and legacy system optimization across multiple platforms and technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="section" id="why-choose">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Blue Skies IT?</h2>
+                <p>Six compelling reasons to partner with us for your IT needs</p>
+            </div>
+
+            <div class="why-choose-grid">
+                <div class="why-choose-item">
+                    <h3>Experienced & Dependable</h3>
+                    <p>All of our techs are seasoned and experienced professionals. We don't hire juniors. Our clients report significant cost savings and 100% acceptable responsiveness with never an unacceptable span of time to act.</p>
+                </div>
+
+                <div class="why-choose-item">
+                    <h3>Flexible Onsite Support</h3>
+                    <p>We can augment your IT staff or on-site accounting resources as needed. As US citizens, our techs require no sponsorships or visas, making deployment flexible and cost-effective.</p>
+                </div>
+
+                <div class="why-choose-item">
+                    <h3>Nearshore Advantage</h3>
+                    <p>Work with our team located in Puerto Rico. You get competitive rates of offshore workers with the quality and convenience of a US-based team just one time zone away, available on-premise within 24 hours if needed.</p>
+                </div>
+
+                <div class="why-choose-item">
+                    <h3>Versatile Expertise</h3>
+                    <p>Our professionals excel in Software Development, System Architecture, Project Management, Team Leadership, Interim CIO roles, and more. Whatever your IT challenge, we have the right specialist.</p>
+                </div>
+
+                <div class="why-choose-item">
+                    <h3>Economical Pricing</h3>
+                    <p>Competitive rates comparable to offshore teams, but with American professionals working in your time zone with deep familiarity of American business practices and regulatory requirements.</p>
+                </div>
+
+                <div class="why-choose-item">
+                    <h3>Veteran-Owned US Company</h3>
+                    <p>We are a veteran-owned US company. Our bilingual team (English/Spanish) is comprised of US citizens working from our hemisphere, supporting American business strength and economy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="section section-light" id="industries">
+        <div class="container">
+            <div class="section-header">
+                <h2>Industries We Serve</h2>
+                <p>Over 20 years of experience across diverse sectors</p>
+            </div>
+
+            <div class="industries-grid">
+                <div class="industry-item">Auction (Automotive)</div>
+                <div class="industry-item">Automotive (OEM & Aftermarket)</div>
+                <div class="industry-item">Banking</div>
+                <div class="industry-item">Chemical Management</div>
+                <div class="industry-item">Collections</div>
+                <div class="industry-item">Distribution (Food & Beverage)</div>
+                <div class="industry-item">Entertainment (Music)</div>
+                <div class="industry-item">Finance</div>
+                <div class="industry-item">Food & Beverage Distribution</div>
+                <div class="industry-item">Food & Beverage Production</div>
+                <div class="industry-item">Government</div>
+                <div class="industry-item">Healthcare</div>
+                <div class="industry-item">Health & Beauty</div>
+                <div class="industry-item">Insurance</div>
+                <div class="industry-item">Justice</div>
+                <div class="industry-item">Logistics</div>
+                <div class="industry-item">Manufacturing</div>
+                <div class="industry-item">Mining</div>
+                <div class="industry-item">Pharmaceuticals</div>
+                <div class="industry-item">Recovery (Vehicle)</div>
+                <div class="industry-item">Restaurant</div>
+                <div class="industry-item">Retail</div>
+                <div class="industry-item">Risk Management</div>
+                <div class="industry-item">Transportation</div>
+                <div class="industry-item">Warehousing</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>How About a Free Consultation?</h2>
+                <p>We've told you a bit about us. Now we want to know about YOU. Get a free consultation. Tell us about your project or issue and a qualified professional will contact you, not to do a sales pitch, but to listen, answer questions, and make recommendations.</p>
+                <p><strong>If no particular matter comes to mind, answer this question: If you could improve one area of your operation, what would it be?</strong></p>
+
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <h4>📞 Phone</h4>
+                        <p><a href="tel:+1-615-202-9712">(615) 202-9712</a></p>
+                    </div>
+                    <div class="contact-info-item">
+                        <h4>📧 Email</h4>
+                        <p><a href="mailto:info@blueskiesit.com">info@blueskiesit.com</a></p>
+                    </div>
+                    <div class="contact-info-item">
+                        <h4>📍 Address</h4>
+                        <p>PO Box 373<br>Rio Grande, PR 00745</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <a href="#schedule" class="btn btn-primary btn-lg">Schedule Your Free Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+        <div class="container">
+            <h2>Ready to Transform Your IT Operations?</h2>
+            <p>Get in touch with our team of experienced IT professionals for a free consultation.</p>
+            <a href="#schedule" class="btn btn-white btn-lg">Schedule a Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4>Blue Skies IT</h4>
+                    <p>Elite IT Contractors and Consultants providing enterprise-grade solutions across 20+ industries.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:+1-615-202-9712">(615) 202-9712</a></li>
+                        <li><a href="mailto:info@blueskiesit.com">info@blueskiesit.com</a></li>
+                        <li><p style="color: rgba(255,255,255,0.8); margin-bottom: 0; font-size: 0.95rem;">PO Box 373<br>Rio Grande, PR 00745</p></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get Started</h4>
+                    <ul>
+                        <li><a href="#schedule">Schedule a Call</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Blue Skies IT. All rights reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
